@@ -43,5 +43,7 @@ To do so <a href="https://www.getsynth.com/docs/blog/2021/03/09/postgres-data-ge
   * add ```try-except``` blocks, validations, error handlers
   * for ```getAnalyticsData``` try to find another way to restrict values  , aside converting GET to POST
   * for ```getAnalyticsData``` try to build select with less constant string in helper function (but tbh, after some days with SQLAlchemy is seems imposible for that kind of db queries)
-* In DB - MOAR DATA :D
+* In DB:
+ * MOAR DATA :D
+ * For "online API" make up cases to use Redis/Tarantool hot-storage layer with business logic for storing actual data from Postgres
 
