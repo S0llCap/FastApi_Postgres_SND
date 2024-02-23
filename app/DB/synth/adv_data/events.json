@@ -1,0 +1,89 @@
+{
+    "type": "array",
+    "length": {
+        "type": "number",
+        "constant": 1
+    },
+    "content": {
+        "type": "object",
+        "id": {
+            "type": "number",
+			"subtype": "i64",
+            "range": {
+				"low": 1000,
+				"high": 2000
+			}
+        },
+        "event_date": {
+            "type": "date_time",
+            "format": "%Y-%m-%d",
+            "subtype": "naive_date",
+            "begin": "2024-02-01",
+            "end": "2024-02-10"
+        },
+        "event_time": {
+            "type": "date_time",
+            "format": "%H:%M:%S",
+            "subtype": "naive_time",
+            "begin": "00:00:00",
+            "end": "23:59:59"
+        },
+        "attribute1": {
+            "type": "number",
+			"subtype": "i64",
+            "range": {
+				"low": 0,
+				"high": 100
+			}
+        },
+        "attribute2": {
+            "type": "number",
+			"subtype": "i64",
+            "range": {
+				"low": 100,
+				"high": 200
+			}
+        },
+		"attribute3": {
+            "type": "number",
+			"subtype": "i64",
+            "range": {
+				"low": 200,
+				"high": 300
+			}
+        },
+		"attribute4": {
+            "type": "string",
+            "faker": {
+				"generator": "first_name"
+			}
+        },
+		"attribute5": {
+            "type": "string",
+            "faker": {
+				"generator": "last_name"
+			}
+        },
+		"attribute6": {
+            "type": "bool",
+            "frequency": 0.5
+        },
+		"metric1": {
+            "type": "number",
+			"subtype": "i64",
+            "range": {
+				"low": 0,
+				"high": 11
+			}
+        },
+		"metric2": {
+            "type": "number",
+			"subtype": "f64",
+            "range": {
+				"low": 100.0,
+				"high": 1000.0,
+				"step": 0.4
+			}
+        }
+    }
+}

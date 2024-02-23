@@ -1,0 +1,73 @@
+services:
+  advertstat_api:
+    build: ./API
+    container_name: API_container
+    command: uvicorn src.main:app --host 0.0.0.0 --port 80 --reload
+    ports:
+      - 8080:80
+    volumes:
+      - api_src:/app/src
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2g
+    networks:
+      - api_db
+
+  advertstat_db:
+    container_name: postgres_container
+    image: postgres:16.2
+    environment:
+      POSTGRES_DB: "advertstat"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "somepwd"
+    volumes:
+      - db_init:/docker-entrypoint-initdb.d
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2g
+        reservations:
+          cpus: '1'
+          memory: 1g
+    networks:
+      - api_db
+
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4:8.3
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "pgadmin@example.com"
+      PGADMIN_DEFAULT_PASSWORD: "somepwd"
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    volumes:
+      - pg_home:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2g
+        reservations:
+          cpus: '1'
+          memory: 1g
+    networks:
+      - api_db
+
+networks:
+  api_db:
+    driver: bridge
+
+volumes:
+    api_src:
+    db_init:
+    db_data:
+    pg_home:
